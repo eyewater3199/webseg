@@ -4,6 +4,8 @@ const FLOAT_255 = tf.scalar(255);
 const OUTPUT_WIDTH = 300;
 const OUTPUT_HEIGHT = 300;
 
+const seg_script_url = "https://github.com/eyewater3199/webseg/blob/main/js/index.js"
+
 let model;  //  Tensorflowjs model
 let webcam;  // Webcam iterator
 let bg;       // Background image
@@ -160,8 +162,9 @@ async function loadImage(src) {
 }
 
 async function setupModel() {
+	const worker_url = getWorkerURL( seg_script_url );
     if (window.Worker) {
-        webWorker = new Worker('https://cdn.jsdelivr.net/gh/eyewater3199/webseg@main/js/thread.js');
+        webWorker = new Worker(worker_url);
         // render
         webWorker.onmessage = event => {
             if (workerModelIsReady && isWaiting) {
@@ -213,6 +216,11 @@ async function init() {
 	 //const pred = model.predict(tf.zeros([1, MODEL_SIZE, MODEL_SIZE, 3]).toFloat());
 	 //var readable_output = pred.dataSync();
 	 //pred.dispose();
+}
+
+function getWorkerURL( url ) {
+  const content = `importScripts( "${ url }" );`;
+  return URL.createObjectURL( new Blob( [ content ], { type: "text/javascript" } ) );
 }
 
 /* Initialize the application */
