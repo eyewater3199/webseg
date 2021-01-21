@@ -161,7 +161,7 @@ async function loadImage(src) {
 
 async function setupModel() {
     if (window.Worker) {
-        webWorker = new Worker('./js/thread.js');
+        webWorker = new Worker('https://cdn.jsdelivr.net/gh/eyewater3199/webseg@main/js/thread.js');
         // render
         webWorker.onmessage = event => {
             if (workerModelIsReady && isWaiting) {
