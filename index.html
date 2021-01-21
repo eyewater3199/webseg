@@ -1,0 +1,49 @@
+<html>
+   <head>
+      <meta charset="utf-8">
+      <!-- TensorFlow.js script -->
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.7.0/dist/tf.min.js"></script>
+      <style>
+         .row {
+         display: flex;
+         text-align: center;
+         }
+         .column {
+         flex: 50%;
+         margin: auto;
+         vertical-align: middle;
+         }
+      </style>
+   </head>
+
+   <body>
+      <h2 align="center">
+      KT_AIComunication_Segmentation </h1>
+
+      <!-- Divide the screen -->
+      <img id="bg" width="300" height="300" src="./img/background.png" style="display:none">
+      <div class="row" >
+         <!-- Inputs -->
+         <div class="column" >
+            <h3>Input Video</h3>
+            <!-- HTML Video-->
+            <video autoplay playsinline muted id="webcam" width="300" height="300"></video>
+         </div>
+         <!-- Outputs -->
+         <div class="column" > 
+               <h3>Seg Output Video</h3>
+               <canvas  width=300 height=300 id="mycanvas" crossorigin="anonymous"></canvas>
+         </div>
+      </div>
+      <button id="start" disabled>Start</button>
+      <button id="stop"  disabled>Stop</button>
+      <button id="bgToggle">Background</button>
+      <img id="bg" src="./img/background.png" hidden>
+
+   </body>
+   
+   <!-- Main script -->
+   <script module="text/js" src = "./js/index.js" > </script>
+   <h5>크롬에서 CORS 에러가 날 경우, 크롬마켓에서 <a href="https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino/">plugin</a> 설치하여 사용하세요.</h5>
+</html>
+
